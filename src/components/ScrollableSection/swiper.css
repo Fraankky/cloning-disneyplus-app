@@ -1,0 +1,17 @@
+.swipper-button-prev {
+    height: 100%;
+    color: white;
+    width: 58px;
+    top: 22px;
+    left: 0;
+}
+.swipper-button-next {
+    height: 100%;
+    color: white;
+    width: 58px;
+    top: 22px;
+    left: 0;
+}
+.swipper-button-next:hover, .swipper-button-prev:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}

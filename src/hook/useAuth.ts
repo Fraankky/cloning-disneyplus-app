@@ -15,31 +15,35 @@ interface Params {
 
 const useAuth = (params: Params = {}) => {
   const { onError, onSuccess } = params;
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  
   const createUser = async (email: string, name: string, password: string) => {
     const auth = getAuth();
     try {
       setError("");
       setLoading(true);
-      const response = await createUserWithEmailAndPassword(
+
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
+
       if (auth.currentUser) {
         // Wait for the profile update to complete
         await updateProfile(auth.currentUser, { displayName: name });
+
+
+        await auth.currentUser.reload();
       }
-  
       setLoading(false);
+
       if (typeof onSuccess === "function") {
-        onSuccess(response.user);
+        onSuccess(userCredential.user);
       }
+      
     } catch (error: any) {
       setError(error.message);
       setLoading(false);
@@ -70,7 +74,6 @@ const useAuth = (params: Params = {}) => {
       }
     }
   };
-
   const logout = async () => {
     setLoading(true);
     setError("");
@@ -80,14 +83,11 @@ const useAuth = (params: Params = {}) => {
     } catch (error: any) {
       setError(error.message);
       setLoading(false);
-
       if (typeof onError === "function") {
         onError(error.message);
       }
     }
   };
-
-
   return {
     createUser,
     login,

@@ -30,15 +30,18 @@ const MenuItem = (props: PropsWithChildren<MenuItemProps>) => {
           <span className={styles.menuName}>{children}</span>
         </Link>
       ) : (
-        <>
+        <div
+          onClick={onClick}
+          className={styles.link}
+          style={{ cursor: 'pointer' }}
+        >
           <span
-            onClick={onClick}
             className={clsx(["material-symbols-outlined", styles.menuIcon])}
           >
             {icon}
           </span>
           <span className={styles.menuName}>{children}</span>
-        </>
+        </div>
       )}
     </li>
   );
@@ -47,6 +50,7 @@ const MenuItem = (props: PropsWithChildren<MenuItemProps>) => {
 
 const Sidebar = (props: SidebarProps) => {
   const { onLogout, user } = props;
+
   return (
     <nav className={styles.container}>
       <img
@@ -82,6 +86,5 @@ const Sidebar = (props: SidebarProps) => {
     </nav>
   );
 };
-
 
 export default Sidebar;

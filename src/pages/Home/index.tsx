@@ -30,6 +30,7 @@ const Home = () => {
     ? `Hi ${auth.email}, Recommended for you`
     : "Recommended for you";
 
+
   return (
     <div>
       <ImageBanner

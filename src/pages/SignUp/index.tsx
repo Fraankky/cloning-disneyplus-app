@@ -17,6 +17,7 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createUser(email, password, name);
+    // dari logic useAuth 
   };
   return (
     <div className={styles.container}>
@@ -43,6 +44,7 @@ const SignUp = () => {
           type="text"
           placeholder="Input your Name"
         />
+
         <input
           required
           value={password}

@@ -9,6 +9,7 @@ import useFetch from "../../hook/useFetch";
 import { API_KEY } from "../../constants";
 import useGenres from "../../hook/useGenres";
 import useMapGenreIdToName from "../../hook/useMapGenreIdToName";
+import useAuthState from "../../hook/useAuthState";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,12 +17,18 @@ const Home = () => {
     `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`
   );
 
+  const auth = useAuthState();
   const { genres } = useGenres();
-
   const firstContent = data?.results?.[0] || {};
 
   // jadi tu genre_ids value nya id, diubah ke name menggunakan hook terpisah aje
   const genreNames = useMapGenreIdToName(firstContent.genre_ids, genres);
+
+  const sectionTitle = auth?.displayName 
+  ? `Hi ${auth.displayName}, Recommended for you` 
+  : auth?.email
+    ? `Hi ${auth.email}, Recommended for you`
+    : "Recommended for you";
 
   return (
     <div>
@@ -37,7 +44,7 @@ const Home = () => {
         language={firstContent.original_language}
       />
       <BannerMask>
-        <ScrollableSection title="Popular">
+        <ScrollableSection title={sectionTitle}>
           {!loading &&
             data &&
             data.results.map((content: any) => (

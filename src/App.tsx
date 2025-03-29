@@ -1,12 +1,15 @@
-import { createBrowserRouter } from 'react-router'
-import Layout from './components/layout'
-import Home from './pages/Home'
-import Search from './pages/Search'
-import MovieDetail from './pages/MovieDetail'
-import TVSeriesDetail from './pages/TVSeriesDetail'
-import Movies from './pages/Movies'
-import TvSeries from './pages/TVSeries'
-import { RouterProvider } from 'react-router/dom'
+import { createBrowserRouter } from 'react-router';
+import Layout from './components/layout';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import MovieDetail from './pages/MovieDetail';
+import TVSeriesDetail from './pages/TVSeriesDetail';
+import Movies from './pages/Movies';
+import TvSeries from './pages/TVSeries';
+import { RouterProvider } from 'react-router/dom';
+import Login from './pages/login';
+import "./firebase";
+import SignUp from './pages/SignUp';
 
 function App() {
 
@@ -37,6 +40,14 @@ function App() {
         {
           path: "/tvseries",
           element: <TvSeries />
+        },
+        {
+          path: "/login",
+          element: <Login />
+        },
+        {
+          path: "/signup",
+          element: <SignUp />
         },
       ]
     },

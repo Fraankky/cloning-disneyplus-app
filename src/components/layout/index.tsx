@@ -1,16 +1,22 @@
 import Sidebar from './sidebar';
-import { PropsWithChildren } from 'react';
 import Page from './Page';
 import { useOutlet } from 'react-router';
+import useAuth from '../../hook/useAuth';
 
-const Layout = (props: PropsWithChildren<unknown>) => { 
+const Layout = () => { 
     const outlet = useOutlet();
-    // membalikan children2 yang ada di path nya pada layout
+    const user = useAuth();
+    // membalikan children2 yang ada di path nya pada layou
+    const { logout } = useAuth();
+    const handleLogout = () => {
+        console.log('logout');
+        logout();
+    }
 
     return (
         <div>
-            <Sidebar />
-            <Page>{outlet}</Page>
+            <Sidebar user={user} onLogout={handleLogout}/>
+            <Page >{outlet}</Page>
             
         </div>
     );   

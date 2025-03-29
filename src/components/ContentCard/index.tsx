@@ -31,7 +31,7 @@ const ContentCard = (props: Props) => {
             <img src={bannerImage} alt="" width="100%" />
           </div>
           <div className={styles.detailWrapper}>
-            <h3>{title} </h3>
+            <h3>{title || "Title"}</h3>
             <p>{description}</p>
           </div>
         </div>

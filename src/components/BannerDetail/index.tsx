@@ -17,7 +17,6 @@ interface Props {
 const BannerDetail = (props: Props) => {
   const {title, overview, releaseDate, genres = [], language} = props
 
-
   return (
     <div className={styles.container}>
       <div className={styles.details}>
@@ -27,19 +26,22 @@ const BannerDetail = (props: Props) => {
           <i>&#x2022;</i>
           <span>{language}</span>
         </div>
+
         <div className={clsx(styles.section, styles.section2)}>
           <p>
             {overview}
           </p>
         </div>
+
         <div className={clsx(styles.section, styles.section3)}>
           {genres.map(({id, name}, index) => (
-            <>
+            <div key={id}>
               {index > 0 && <span>&#124;</span>}
-              <span  key={id}> {name}</span>
-            </>
+              <span>{name}</span>
+            </div>
           ))}
         </div>
+        
       </div>
     </div>
   );
